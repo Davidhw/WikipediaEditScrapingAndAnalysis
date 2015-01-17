@@ -1,0 +1,27 @@
+In the table below, the URL category refers to the webpage that contains the relevant data and the xpath category refers to the XML path to the desired data on that webpage. These xpaths were found by using the selection tool of the Firefox web development  addon Firebug. However, should the listed xpaths become outdated, it is recommended that those attempting to find the new xpaths use SelectorGadget because it is easier to use.
+
+
+User/Article Type	URL	Xpath
+Users:		
+Bots	https://en.wikipedia.org/wiki/Wikipedia:List_of_bots_by_number_of_edits 	/html/body/div[3]/div[3]/div[4]/table[3]
+Administrators	https://en.wikipedia.org/w/index.php?title=Special:ListUsers/sysop&offset=&limit=9999	/html/body/div[3]/div[3]/div[3]/ul
+Frequent Editors	https://en.wikipedia.org/wiki/Wikipedia:List_of_Wikipedians_by_number_of_edits	N/A
+Articles:		
+Popular	http://wikistics.falsikon.de/long/wikipedia/en/	//li
+Featured	http://en.wikipedia.org/wiki/Wikipedia:Featured_articles	//@href
+Random	https://en.wikipedia.org/wiki/Special:Random	N/A
+Reddited Articles	http://www.reddit.com/r/wikipedia/top/?sort=top&t=all&limit=100	//p[@class="title"]/a//@href
+Reddit Next Page	N/A	//p[@class="nextprev"]/a[1]/@href and 
+		//p[@class="nextprev"]/a[2]/@href
+Edit History:	http://en.wikipedia.org/w/index.php?title='+page_name+'&action=history&limit=999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999	
+Editting User	''	//*[@id="pagehistory"]//li//span[@class ="history-user"]//a[1]//text()
+Page History	''	//*[@id="pagehistory"]
+Next Page	''	/html/body/div[3]/div[3]/div[3]/a[@class="mw-nextlink"]/@href
+
+
+While the other types of users can be automatically collected, the list of the most frequent editors must be copied manually because no xpath specifies just the listed users. Also, the Wikipedia subreddit spans multiple pages that must be traversed to collect all of the article links. The table lists two xpaths to the subsequent page because both paths are used at different times. As such, both paths must be tested for validity. No xpaths are specified for random links because the random link does not lead to a list of articles as the other article links do. Instead, it forwards the user to a randomly selected article. As such, going to such a page and then saving the response.url generates a random link. Because some of the page urls scraped may not go to proper articles, pages whose names begin with “Wikipedia:”, “Main_Page:”, “Special:” “Portal”, “Help:”, “Category:”, “Lists_”, “List_of:”, “User:”, “Wikipedia_talk:”, “Main_Page”, “File:”, “Template:”, “404:”, “Search:”, or “Talk:” should be excluded from the list of articles. Once the lists of articles have been scraped, each article link is then changed into a link to that article’s edit history. That is done by taking everything that comes after “wikipedia.org/wiki/” in the link and inserting it into “http://en.wikipedia.org/w/index.php?title='+page_name+'&action=history&limit=9” where page_name is written. In the code, a limit of 228 nines is specified in the URL so as to prevent the spider from having to open an additional page. However, should there be even more edits, the table lists the xpath for the next page’s URL. The contributing user of each edit can be scraped as specified in the table, but the magnitude of the edit must be found by using the following regular expression “r'mw-plusminus-[pos|neg|nul].*([\+|\-]\d+|\(0\))” in conjunction with the stated xpath listed in the table.
+
+
+
+
+

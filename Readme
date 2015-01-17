@@ -1,0 +1,15 @@
+If you wish to recreate your own code, please read the Xpaths file.
+
+
+Program Use:
+If you are willing to use the data I have already downloaded and analyzed, then simply navigate to Wikipedia/scraping_wikipedia_links/scrape_contributions/scrape_contributions/spiders and run 'python calc_contributions'. Then you will see the data used for this study. To install python go to www.python.org .
+If you want to run the scraping programs yourself then you must also install Scrapy. You can install Scrapy at using PIP with pip install scrapy
+or by downloading it from scrapy.org.
+Then, to run any of the spiders, navigate to the directory of the spider in your terminal. For exmaple, Wikipedia/scraping_wikipedia_links/random_articles is the directory for the spider that scrapes links to random articles. Then type, 'scrapy list' to view the name of the spider. Then type 'scrapy crawl spidername' to launch the spider, where spidername is the name you viewed by typing 'scrapy list'.
+
+Once you have downloaded lists of each article and user type (frequent editors must be copied manually because there is no xpath that just refers to the editors), place them in Wikipedia/scraping_wikipedia_links/scrape_contributions/scrape_contributions/spiders . Then, for each article type, run 'python runspiders2.py "article_list" ' where 'article_list' refers to filename of the list of articles of that type. Then run 'python calc_contributions'. 
+
+Author: David Weinstein
+Email: David.Weinstein@ncf.edu
+
+

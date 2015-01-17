@@ -1,0 +1,20 @@
+users.append(re.search(r'title="(.*)"\s',path.extract()).group(1))
+
+for path in user_paths:
+    users.append(re.search(r'title="(.*)"\s',path.extract()).group(1))
+
+user_paths = hxs.select('//*[@id="pagehistory"]//li//span[@class ="history-user"]//a[@class="mw-userlink"]')
+
+user_paths2 = hxs.select('//*[@id="pagehistory"]//li//span[@class ="history-user"]//a[1]')
+
+user_paths3 = hxs.re(r'//*[@id="pagehistory"]//li//span[@class ="history-user"]//a[@class="(mw-userlink|new mw-userlink)"]')
+
+user_paths4 = hxs.select('//*[@id="pagehistory"]//li//span[@class ="history-user"]')
+
+
+for user_hist in user_histories:
+    try:users.append(re.search(r'title="(.*)(" class| \(page does)',user_hist).group(1))
+
+
+
+
